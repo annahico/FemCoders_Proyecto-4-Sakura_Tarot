@@ -1,0 +1,64 @@
+          INICIO
+                                |
+                                v
+                    ┌───────────────────────┐
+                    │   BIENVENIDA          │
+                    │ - Input: Nombre       │
+                    │ - Validación activa   │
+                    └───────────┬───────────┘
+                                |
+                        ┌───────┴───────┐
+                        |               |
+                        v               v
+              ┌─────────────────┐  ┌──────────────────┐
+              │ NUEVA LECTURA   │  │ VER HISTORIAL    │
+              └────────┬────────┘  └─────────┬────────┘
+                       |                     |
+                       v                     v
+         ┌─────────────────────────┐  ┌──────────────────────┐
+         │ SELECCIÓN DE CARTAS     │  │ LISTA DE LECTURAS    │
+         │ • Cargar 52 cartas      │  │ • Mostrar registros  │
+         │ • Elegir 3 cartas       │  │ • Ver detalles       │
+         │ • Bloquear al completar │  │ • Editar nombre      │
+         └──────────┬──────────────┘  │ • Eliminar lectura   │
+                    |                 │ • Vaciar todo        │
+                    v                 └─────────┬────────────┘
+         ┌─────────────────────────┐             |
+         │ ANIMACIÓN REVELACIÓN    │             |
+         │ • Voltear cartas        │             |
+         │ • Efecto mágico         │             |
+         └──────────┬──────────────┘             |
+                    |                            |
+                    v                            |
+         ┌─────────────────────────┐             |
+         │ RESULTADOS              │             |
+         │ • Llamada a API         │             |
+         │ • Mostrar significados  │             |
+         │ • Opción guardar        │             |
+         └──────────┬──────────────┘             |
+                    |                            |
+          ┌─────────┴─────────┐                  |
+          |                   |                  |
+          v                   v                  |
+    ┌──────────┐      ┌─────────────┐            |
+    │ GUARDAR  │      │ NO GUARDAR  │            |
+    │ LECTURA  │      │   Volver    │            |
+    └────┬─────┘      └──────┬──────┘            |
+         |                   |                   |
+         v                   v                   |
+    ┌─────────────────────────────┐              |
+    │ Confirmar guardado          │              |
+    │ • Generar timestamp         │              |
+    │ • Almacenar en historial    │              |
+    │ • Mensaje de éxito          │              |
+    └──────────────┬──────────────┘              |
+                   |                             |
+                   └─────────────────────────────┘
+                                |
+                                v
+                    ┌────────────────────┐
+                    │ OPCIONES FINALES   │
+                    │ • Nueva lectura    │
+                    │ • Ver historial    │
+                    │ • Salir            │
+                    └────────────────────┘
