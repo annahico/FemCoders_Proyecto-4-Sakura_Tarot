@@ -17,7 +17,7 @@
                        v                     v
          ┌─────────────────────────┐  ┌──────────────────────┐
          │ SELECCIÓN DE CARTAS     │  │ LISTA DE LECTURAS    │
-         │ • Cargar 52 cartas      │  │ • Mostrar registros  │
+         │ • Barajar 52 cartas     │  │ • Mostrar registros  │
          │ • Elegir 3 cartas       │  │ • Ver detalles       │
          │ • Bloquear al completar │  │ • Editar nombre      │
          └──────────┬──────────────┘  │ • Eliminar lectura   │
