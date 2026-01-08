@@ -1,4 +1,4 @@
-          INICIO
+                             INICIO
                                 |
                                 v
                     ┌───────────────────────┐
@@ -11,7 +11,7 @@
                         |               |
                         v               v
               ┌─────────────────┐  ┌──────────────────┐
-              │ NUEVA LECTURA   │  │ VER HISTORIAL    │
+              │  NUEVA LECTURA  │  │   VER HISTORIAL  │
               └────────┬────────┘  └─────────┬────────┘
                        |                     |
                        v                     v
@@ -22,7 +22,7 @@
          │ • Bloquear al completar │  │ • Editar nombre      │
          └──────────┬──────────────┘  │ • Eliminar lectura   │
                     |                 │ • Vaciar todo        │
-                    v                 └─────────┬────────────┘
+                    v                 └──────────┬───────────┘
          ┌─────────────────────────┐             |
          │ ANIMACIÓN REVELACIÓN    │             |
          │ • Voltear cartas        │             |
@@ -42,12 +42,13 @@
           v                   v                  |
     ┌──────────┐      ┌─────────────┐            |
     │ GUARDAR  │      │ NO GUARDAR  │            |
-    │ LECTURA  │      │   Volver    │            |
-    └────┬─────┘      └──────┬──────┘            |
-         |                   |                   |
-         v                   v                   |
+    │ LECTURA  │      │  -Volver a  │            │ 
+    │          │      │   Inicio    │            |
+    └────┬─────┘      └─────────────┘            |
+         |                                       |
+         v                                       |
     ┌─────────────────────────────┐              |
-    │ Confirmar guardado          │              |
+    │ Confirmar guardado:         │              |
     │ • Generar timestamp         │              |
     │ • Almacenar en historial    │              |
     │ • Mensaje de éxito          │              |
