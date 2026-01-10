@@ -7,7 +7,13 @@ export const sakuraApi = () => {
     const response = await axios.get(url);
     return response.data;
   };
+
+  const getCardById = async (id) => {
+    const response = await axios.get(`${url}/${id}`);
+    return response.data;
+  };
   return {
     getAllCards,
+    getCardById,
   };
 };
