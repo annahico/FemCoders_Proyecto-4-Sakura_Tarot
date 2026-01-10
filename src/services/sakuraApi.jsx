@@ -23,8 +23,20 @@ export const sakuraApi = () => {
     }
   };
 
+  const getRandomCards = async (count = 10) => {
+    try {
+      const allCards = await getAllCards();
+      const shuffled = allCards.sort(() => Math.random() - 0.5).slice(0, count);
+      return shuffled;
+    } catch (error) {
+      console.error("Error obteniendo cartas aleatorias:", error);
+      throw error;
+    }
+  };
+
   return {
     getAllCards,
     getCardById,
+    getRandomCards,
   };
 };
