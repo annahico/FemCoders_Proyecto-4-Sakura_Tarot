@@ -13,6 +13,16 @@ export const usersApi = () => {
     }
   };
 
+  const getUserByEmail = async (email) => {
+    try {
+      const response = await axios.get(`${url}?email=${email}`);
+      return response.data.length > 0 ? response.data[0] : null;
+    } catch (error) {
+      console.error("Error en getUserByEmail:", error.message);
+      throw error;
+    }
+  };
+
   const createReadableDate = () => {
     const now = new Date();
     return now.toLocaleDateString("es-ES", {
@@ -30,6 +40,10 @@ export const usersApi = () => {
       password: userData.password,
       createdAt: createdAt,
     };
+  };
+
+  const verifyPassword = (inputPassword, storedPassword) => {
+    return inputPassword === storedPassword;
   };
 
   const registerUser = async (userData) => {
@@ -51,10 +65,49 @@ export const usersApi = () => {
     }
   };
 
+  const loginUser = async (email, password) => {
+    try {
+      const user = await getUserByEmail(email);
+
+      if (!user) {
+        throw new Error("Usuario no encontrado");
+      }
+
+      const isPasswordValid = verifyPassword(password, user.password);
+
+      if (!isPasswordValid) {
+        throw new Error("Contraseñ incorrecta");
+      }
+
+      return user;
+    } catch (error) {
+      console.error("Error en loginUser:", error.message);
+      throw error;
+    }
+  };
+
+  const authenticateUser = async (userData) => {
+    try {
+      const emailExists = await doesEmailExist(userData.email);
+
+      if (emailExists) {
+        console.log("email esiste, haciendo login...");
+        return await loginUser(userData.email, userData.password);
+      } else {
+        console.log("Email nuevo, registrando usuario...");
+        return await registerUser(userData);
+      }
+    } catch (error) {
+      console.error("Error en authenticateUser:", error.message);
+      throw error;
+    }
+  };
+
   return {
+    authenticateUser,
+    registerUser,
+    loginUser,
     doesEmailExist,
     createReadableDate,
-    createUserObject,
-    registerUser,
   };
 };
