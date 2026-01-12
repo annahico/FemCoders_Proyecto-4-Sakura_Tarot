@@ -3,14 +3,26 @@ import axios from "axios";
 export const usersApi = () => {
   const url = "http://localhost:3000/users";
 
-  const doesEmailExist = async (email) => {
-    try {
-      const response = await axios.get(`${url}?email=${email}`);
-      return response.data.length > 0;
-    } catch (error) {
-      console.error("Error en doesEmailExist:", error.message);
-      throw error;
-    }
+  const createReadableDate = () => {
+    const now = new Date();
+    return now.toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  const createUserObject = (userData, createdAt) => {
+    return {
+      username: userData.username,
+      email: userData.email,
+      password: userData.password,
+      createdAt: createdAt,
+    };
+  };
+
+  const verifyPassword = (inputPassword, storedPassword) => {
+    return inputPassword === storedPassword;
   };
 
   const getUserByEmail = async (email) => {
@@ -23,27 +35,35 @@ export const usersApi = () => {
     }
   };
 
-  const createReadableDate = () => {
-    const now = new Date();
-    return now.toLocaleDateString("es-ES", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    });
+  const doesEmailExist = async (email) => {
+    try {
+      const user = await getUserByEmail(email);
+      return user !== null;
+    } catch (error) {
+      console.error("Error en doesEmailExist:", error.message);
+      throw error;
+    }
   };
 
-  const createUserObject = (userData, id, createdAt) => {
-    return {
-      id: id,
-      username: userData.username,
-      email: userData.email,
-      password: userData.password,
-      createdAt: createdAt,
-    };
-  };
+  const loginUser = async (email, password) => {
+    try {
+      const user = await getUserByEmail(email);
 
-  const verifyPassword = (inputPassword, storedPassword) => {
-    return inputPassword === storedPassword;
+      if (!user) {
+        throw new Error("Usuario no encontrado");
+      }
+
+      const isPasswordValid = verifyPassword(password, user.password);
+
+      if (!isPasswordValid) {
+        throw new Error("Contraseña incorrecta");
+      }
+
+      return user;
+    } catch (error) {
+      console.error("Error en loginUser:", error.message);
+      throw error;
+    }
   };
 
   const registerUser = async (userData) => {
@@ -65,38 +85,29 @@ export const usersApi = () => {
     }
   };
 
-  const loginUser = async (email, password) => {
-    try {
-      const user = await getUserByEmail(email);
-
-      if (!user) {
-        throw new Error("Usuario no encontrado");
-      }
-
-      const isPasswordValid = verifyPassword(password, user.password);
-
-      if (!isPasswordValid) {
-        throw new Error("Contraseñ incorrecta");
-      }
-
-      return user;
-    } catch (error) {
-      console.error("Error en loginUser:", error.message);
-      throw error;
-    }
-  };
-
   const authenticateUser = async (userData) => {
     try {
-      const emailExists = await doesEmailExist(userData.email);
+      const existingUser = await getUserByEmail(userData.email);
 
-      if (emailExists) {
-        console.log("email esiste, haciendo login...");
-        return await loginUser(userData.email, userData.password);
-      } else {
+      if (!existingUser) {
         console.log("Email nuevo, registrando usuario...");
-        return await registerUser(userData);
+
+        const createdAt = createReadableDate();
+        const newUser = createUserObject(userData, createdAt);
+        const response = await axios.post(url, newUser);
+
+        return response.data;
       }
+
+      console.log("Email existe, haciendo login...");
+
+      const isPasswordValid = verifyPassword(userData.password, existingUser.password);
+
+      if (!isPasswordValid) {
+        throw new Error("Contraseña incorrecta");
+      }
+
+      return existingUser;
     } catch (error) {
       console.error("Error en authenticateUser:", error.message);
       throw error;
@@ -108,6 +119,7 @@ export const usersApi = () => {
     registerUser,
     loginUser,
     doesEmailExist,
+    getUserByEmail,
     createReadableDate,
   };
 };
