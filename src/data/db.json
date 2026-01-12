@@ -1,1 +1,202 @@
-{}
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "María García",
+      "email": "maria@example.com",
+      "password": "123456",
+      "createdAt": "10 de enero de 2026"
+    },
+    {
+      "id": 2,
+      "username": "Juan Pérez",
+      "email": "juan@example.com",
+      "password": "abcdef",
+      "createdAt": "10 de enero de 2026"
+    },
+    {
+      "id": 3,
+      "username": "Ana López",
+      "email": "ana@example.com",
+      "password": "qwerty",
+      "createdAt": "11 de enero de 2026"
+    }
+  ],
+  "readings": [
+    {
+      "id": 1,
+      "userId": 1,
+      "username": "María García",
+      "date": "10 de enero de 2026",
+      "cards": {
+        "past": {
+          "id": "1",
+          "cardNumber": 1,
+          "spanishName": "Viento",
+          "kanji": "風",
+          "sakuraCard": "https://i.ibb.co/k5HVTP7/Viento-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza el intelecto, la sabiduría, la meteorología muestra información valiosa."
+        },
+        "present": {
+          "id": "5",
+          "cardNumber": 5,
+          "spanishName": "Lluvia",
+          "kanji": "雨",
+          "sakuraCard": "https://i.ibb.co/8XqY9vK/Lluvia-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa las emociones, la limpieza espiritual y la renovación."
+        },
+        "future": {
+          "id": "12",
+          "cardNumber": 12,
+          "spanishName": "Flor",
+          "kanji": "花",
+          "sakuraCard": "https://i.ibb.co/9ZK8vXN/Flor-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza el amor, la belleza y el florecimiento de nuevas oportunidades."
+        }
+      }
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "username": "María García",
+      "date": "10 de enero de 2026",
+      "cards": {
+        "past": {
+          "id": "8",
+          "cardNumber": 8,
+          "spanishName": "Sombra",
+          "kanji": "影",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa los miedos ocultos y los aspectos no confrontados de uno mismo."
+        },
+        "present": {
+          "id": "15",
+          "cardNumber": 15,
+          "spanishName": "Trueno",
+          "kanji": "雷",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza el poder, la energía explosiva y los cambios súbitos."
+        },
+        "future": {
+          "id": "20",
+          "cardNumber": 20,
+          "spanishName": "Luz",
+          "kanji": "光",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa la claridad, la verdad y la iluminación espiritual."
+        }
+      }
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "username": "Juan Pérez",
+      "date": "10 de enero de 2026",
+      "cards": {
+        "past": {
+          "id": "3",
+          "cardNumber": 3,
+          "spanishName": "Agua",
+          "kanji": "水",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza la adaptabilidad, las emociones fluidas y la purificación."
+        },
+        "present": {
+          "id": "10",
+          "cardNumber": 10,
+          "spanishName": "Ilusión",
+          "kanji": "幻",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa las falsas percepciones y la necesidad de ver más allá de las apariencias."
+        },
+        "future": {
+          "id": "18",
+          "cardNumber": 18,
+          "spanishName": "Escudo",
+          "kanji": "盾",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza la protección, la defensa y la seguridad personal."
+        }
+      }
+    },
+    {
+      "id": 4,
+      "userId": 2,
+      "username": "Juan Pérez",
+      "date": "11 de enero de 2026",
+      "cards": {
+        "past": {
+          "id": "6",
+          "cardNumber": 6,
+          "spanishName": "Bosque",
+          "kanji": "森",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa la naturaleza, el crecimiento y la conexión con la tierra."
+        },
+        "present": {
+          "id": "13",
+          "cardNumber": 13,
+          "spanishName": "Espejo",
+          "kanji": "鏡",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza la reflexión, la verdad interior y el autoconocimiento."
+        },
+        "future": {
+          "id": "25",
+          "cardNumber": 25,
+          "spanishName": "Sueño",
+          "kanji": "夢",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa las aspiraciones, los deseos profundos y las visiones futuras."
+        }
+      }
+    },
+    {
+      "id": 5,
+      "userId": 3,
+      "username": "Ana López",
+      "date": "11 de enero de 2026",
+      "cards": {
+        "past": {
+          "id": "2",
+          "cardNumber": 2,
+          "spanishName": "Fuego",
+          "kanji": "火",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza la pasión, la transformación y la energía creativa."
+        },
+        "present": {
+          "id": "9",
+          "cardNumber": 9,
+          "spanishName": "Salto",
+          "kanji": "跳",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Representa el coraje para dar el siguiente paso y superar obstáculos."
+        },
+        "future": {
+          "id": "22",
+          "cardNumber": 22,
+          "spanishName": "Creación",
+          "kanji": "創",
+          "sakuraCard": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "sakuraReverse": "https://i.ibb.co/XxrvMJ2/Reverso-Sakura.jpg",
+          "meaning": "Simboliza el poder creativo, la manifestación y el inicio de nuevos proyectos."
+        }
+      }
+    }
+  ]
+}
