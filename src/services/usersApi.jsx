@@ -85,37 +85,7 @@ export const usersApi = () => {
     }
   };
 
-  const authenticateUser = async (userData) => {
-    try {
-      const existingUser = await getUserByEmail(userData.email);
-
-      if (!existingUser) {
-        console.log("Email nuevo, registrando usuario...");
-
-        const createdAt = createReadableDate();
-        const newUser = createUserObject(userData, createdAt);
-        const response = await axios.post(url, newUser);
-
-        return response.data;
-      }
-
-      console.log("Email existe, haciendo login...");
-
-      const isPasswordValid = verifyPassword(userData.password, existingUser.password);
-
-      if (!isPasswordValid) {
-        throw new Error("Contraseña incorrecta");
-      }
-
-      return existingUser;
-    } catch (error) {
-      console.error("Error en authenticateUser:", error.message);
-      throw error;
-    }
-  };
-
   return {
-    authenticateUser,
     registerUser,
     loginUser,
     doesEmailExist,
