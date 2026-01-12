@@ -18,7 +18,7 @@ const CardBack = ({ card }) => {
       `}
         >
             {/* Imagen del dorso de la carta Sakura */}
-            <img src="#" alt="Sakura Card Back" className="rounded-lg" />
+            {/* <img src="#" alt="Sakura Card Back" className="rounded-lg" /> */}
             {/* Etiqueta visual Pasado/Presente/Futuro */}
             {isSelected && (
                 <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full shadow-md font-bold">

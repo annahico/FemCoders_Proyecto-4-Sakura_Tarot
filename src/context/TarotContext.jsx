@@ -5,7 +5,7 @@ const TarotContext = createContext();
 export const TarotProvider = ({ children }) => {
     const [selectedCards, setSelectedCards] = useState([]); // Máximo 3 elementos 
 
-    // Función principal de selección [cite: 35]
+    // Función principal de selección 
     const handleCardSelect = (card) => {
         // 1. Validar si la carta ya está seleccionada y evitar repetidas
         const isAlreadySelected = selectedCards.some((c) => c.id === card.id);
