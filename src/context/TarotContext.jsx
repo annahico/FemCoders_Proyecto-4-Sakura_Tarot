@@ -1,37 +1,13 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 
-const TarotContext = createContext();
+// Creamos el espacio de memoria
+export const TarotContext = createContext();
 
-export const TarotProvider = ({ children }) => {
-    const [selectedCards, setSelectedCards] = useState([]);
-    const handleCardSelect = (card) => {
-        const isAlreadySelected = selectedCards.some((c) => c.id === card.id);
-        if (isAlreadySelected || selectedCards.length >= 3) return;
-        setSelectedCards([...selectedCards, card]);
-    };
-
-    const clearSelection = () => {
-        setSelectedCards([]);
-    };
-
-    const getCardLabel = (cardId) => {
-        const index = selectedCards.findIndex((c) => c.id === cardId);
-        if (index === 0) return "PASADO";
-        if (index === 1) return "PRESENTE";
-        if (index === 2) return "FUTURO";
-        return null;
-    };
-
-    return (
-        <TarotContext.Provider value={{
-            selectedCards,
-            handleCardSelect,
-            clearSelection,
-            getCardLabel
-        }}>
-            {children}
-        </TarotContext.Provider>
-    );
+// Creamos el "gancho" para que los componentes accedan a los datos
+export const useTarot = () => {
+  const context = useContext(TarotContext);
+  if (!context) {
+    throw new Error('useTarot debe estar dentro de TarotProvider');
+  }
+  return context;
 };
-
-export { TarotContext };

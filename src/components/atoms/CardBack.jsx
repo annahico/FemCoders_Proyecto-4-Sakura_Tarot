@@ -14,7 +14,13 @@ const CardBack = ({ card }) => {
         ${isDisabled ? 'opacity-50 cursor-not-allowed grayscale' : ''}
       `}
         >
+<<<<<<< HEAD
+            {/* Imagen del dorso de la carta Sakura */}
+            {/* <img src="#" alt="Sakura Card Back" className="rounded-lg" /> */}
+            {/* Etiqueta visual Pasado/Presente/Futuro */}
+=======
             <img src="#" alt="Sakura Card Back" className="rounded-lg" />
+>>>>>>> 80b6132f5fca290c03b9c3672691114e8cad970a
             {isSelected && (
                 <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full shadow-md font-bold">
                     {label}
