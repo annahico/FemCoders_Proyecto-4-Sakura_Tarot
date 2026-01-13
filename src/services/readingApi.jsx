@@ -36,7 +36,7 @@ export const readingApi = () => {
     }
   };
 
-  const getReadingByUserId = async (userId) => {
+  const getReadingsByUserId = async (userId) => {
     try {
       const response = await axios.get(`${url}?userId=${userId}`);
       return response.data;
@@ -46,10 +46,51 @@ export const readingApi = () => {
     }
   };
 
+  const getReadingById = async (readingId) => {
+    try {
+      const response = await axios.get(`${url}/${readingId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error en getReadingById:", error.message);
+      throw error;
+    }
+  };
+
+  const deleteReading = async (readingId) => {
+    try {
+      const response = await axios.delete(`${url}/${readingId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error en deleteReading:", error.message);
+      throw error;
+    }
+  };
+
+  const deleteAllReadings = async (userId) => {
+    try {
+      const readings = await getReadingsByUserId(userId);
+
+      if (readings.length === 0) return { deleted: 0 };
+
+      const deletePromises = readings.map((reading) => axios.delete(`${url}/${reading.id}`));
+
+      const results = await Promise.allSettled(deletePromises);
+      const deleted = results.filter((r) => r.status === "fulfilled").length;
+
+      return { deleted };
+    } catch (error) {
+      console.error("Error en deleteAllReadings:", error.message);
+      throw error;
+    }
+  };
+
   return {
     createReadableDate,
     createReadingObject,
     saveReading,
-    getReadingByUserId,
+    getReadingsByUserId,
+    getReadingById,
+    deleteReading,
+    deleteAllReadings,
   };
 };
