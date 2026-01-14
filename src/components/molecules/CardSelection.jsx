@@ -4,10 +4,8 @@ import { Cards } from '../atoms/Cards'
 
 export const CardSelection = () => {
   return (
-    <div>
-        {/* <CardBack></CardBack> */}
-        <div className='z-2 bg-amber-600 bg-opacity-100 flex'>
-            <div className='z-3 grid grid-cols-5 grid-row-2 gap-y-10 col-g w-4xl items-center'>
+        <div className='bg-[#fde8ee]/50 absolute z-10 p-15 rounded-2xl border-2 border-[#d4Af37]'>
+            <div className="z-20 grid grid-cols-5 grid-row-2 gap-y-10 col-g items-center">
                 <Cards></Cards>
                 <Cards></Cards>
                 <Cards></Cards>
@@ -20,6 +18,5 @@ export const CardSelection = () => {
                 <Cards></Cards>
             </div>
         </div>
-    </div>
   )
 }

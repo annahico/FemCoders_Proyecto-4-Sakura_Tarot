@@ -3,7 +3,7 @@ import { CardSelection } from '../molecules/CardSelection'
 
 export const CardReading = () => {
   return (
-    <div>
+    <div className=" flex justify-center relative bg-amber-300">
         <CardSelection></CardSelection>
     </div>
   )
