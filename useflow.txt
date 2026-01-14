@@ -31,7 +31,7 @@
                     |                            |
                     v                            |
          ┌─────────────────────────┐             |
-         │ RESULTADOS              │             |
+         │    RESULTADOS           │             |
          │ • Llamada a API         │             |
          │ • Mostrar significados  │             |
          │ • Opción guardar        │             |

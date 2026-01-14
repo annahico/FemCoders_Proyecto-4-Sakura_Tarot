@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server src/data/db.json"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
@@ -29,7 +30,7 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "json-server": "^1.0.0-beta.3",
-    "vite": "npm:rolldown-vite@7.2.5",
+    "vite": "npm:rolldown-vite@^7.2.5",
     "vitest": "^4.0.16"
   },
   "overrides": {
