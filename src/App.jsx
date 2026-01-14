@@ -3,11 +3,17 @@ import "./App.css";
 
 import React from 'react'
 import { HomePage } from "./pages/HomePage";
+import { FormPage } from "./pages/FormPage";
+import { Background } from "./components/atoms/Background";
+import { TarotPage } from "./pages/TarotPage";
 
 export const App = () => {
   return (
-    <div>
-      <HomePage></HomePage>
-    </div>
+    <>
+      <Background></Background>
+      <div>
+        <TarotPage></TarotPage>
+      </div>
+    </>
   )
 }
