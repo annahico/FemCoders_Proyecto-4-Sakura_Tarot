@@ -24,7 +24,7 @@ const SakuraCard = ({ card, isSelected, isRevealed, label, onClick, isDisabled }
 
           {isSelected && (
             <div className="absolute inset-0 bg-pink-500/30 flex items-center justify-center">
-              <span className="bg-[#D81B60] text-white text-[9px] px-2 py-0.5 rounded-full font-bold shadow-sm uppercase tracking-tighter">
+              <span className="bg-[#962951] text-white text-[9px] px-2 py-0.5 rounded-full font-bold shadow-sm uppercase tracking-tighter">
                 {label}
               </span>
             </div>

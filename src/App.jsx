@@ -1,38 +1,36 @@
 import { useState } from "react";
 import "./App.css";
 import { FormPage } from "./pages/FormPage.jsx";
+import { GamePage } from "./pages/GamePage.jsx"; 
 import { TarotProvider } from "./context/TarotProvider.jsx";
 import { useTarot } from "./context/TarotContext.jsx"; 
 import { Background } from "./components/atoms/Background";
 
-// Componente para ver que la lógica de las cartas funciona en consola
+// Monitor de estado para la consola
 const DebugLogic = () => {
   const { deck, selectedCards } = useTarot();
   console.log("--- ESTADO DEL JUEGO (LOGS) ---");
   console.log("Cartas en el mazo (10):", deck);
-  console.log("Cartas seleccionadas (3):", selectedCards);
+  console.log("Cartas seleccionadas:", selectedCards);
   return null;
 };
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(false); //tenemos qwue poner true para ver el mensaje de exito
+  // Cambiar a true si queremos mostrar la página del juego directamente
+  const [isLogged, setIsLogged] = useState(true);
 
   return (
     <TarotProvider>
       <DebugLogic /> 
-      <main className="relative min-h-screen bg-[#FCE4EC]">
-        {/* Tu fondo de nubes/estrellas */}
+      
+      <main className="relative min-h-screen bg-[#FCE4EC] overflow-x-hidden">
         <Background />
 
-        <div className="relative z-10">
+        <div className="relative z-10 w-full">
           {!isLogged ? (
             <FormPage onLogin={() => setIsLogged(true)} />
           ) : (
-            /* Mientras no tengamos GamePage, muestra un mensaje de éxito */
-            <div className="flex flex-col items-center justify-center h-screen">
-              <h1 className="text-2xl font-bold text-pink-600">¡Login Correcto!</h1>
-              <p className="text-pink-400">Pronto aquí verás las cartas de Sakura...</p>
-            </div>
+            <GamePage />
           )}
         </div>
       </main>
