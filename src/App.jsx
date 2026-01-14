@@ -6,7 +6,7 @@ import { TarotProvider } from "./context/TarotProvider.jsx";
 import { useTarot } from "./context/TarotContext.jsx"; 
 import { Background } from "./components/atoms/Background";
 
-// Monitor de estado para la consola
+
 const DebugLogic = () => {
   const { deck, selectedCards } = useTarot();
   console.log("--- ESTADO DEL JUEGO (LOGS) ---");
@@ -16,7 +16,7 @@ const DebugLogic = () => {
 };
 
 const App = () => {
-  // Cambiar a true si queremos mostrar la página del juego directamente
+  // Cambiar a false si queremosa probar el formulario de login
   const [isLogged, setIsLogged] = useState(true);
 
   return (
@@ -36,6 +36,6 @@ const App = () => {
       </main>
     </TarotProvider>
   );
-}
+};
 
-export default App;
+export { App };
