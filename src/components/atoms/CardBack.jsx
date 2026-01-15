@@ -14,7 +14,7 @@ const CardBack = ({ card }) => {
         ${isDisabled ? 'opacity-50 cursor-not-allowed grayscale' : ''}
       `}
         >
-            <img src="#" alt="Sakura Card Back" className="rounded-lg" />
+            <img src="../src/assets/images/CardBack.svg" alt="Sakura Card Back" className="rounded-lg" />
             {isSelected && (
                 <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full shadow-md font-bold">
                     {label}

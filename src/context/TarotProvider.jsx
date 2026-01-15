@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TarotContext } from './TarotContext'; 
+import { TarotContext } from './TarotContext';
 import { sakuraApi } from '../services/sakuraApi';
 
 const api = sakuraApi();
@@ -9,26 +9,42 @@ export const TarotProvider = ({ children }) => {
     const [selectedCards, setSelectedCards] = useState([]);
     const [isRevealed, setIsRevealed] = useState(false);
 
+    // Función para obtener cartas nuevas y barajar
+    const initGame = async () => {
+        try {
+            const cards = await api.getRandomCards(10); 
+            setDeck(cards);
+        } catch (error) {
+            console.error("Error cargando cartas:", error);
+        }
+    };
+
     useEffect(() => {
-        const initGame = async () => {
-            try {
-                const cards = await api.getRandomCards(10);
-                setDeck(cards);
-            } catch (error) {
-                console.error("Error cargando cartas:", error);
-            }
+        const loadGame = async () => {
+            await initGame();
         };
-        initGame();
+        loadGame();
     }, []);
 
     const handleSelect = (card) => {
-        if (selectedCards.length < 3 && !selectedCards.find(c => c.id === card.id)) {
+        // Solo permite seleccionar si no se ha revelado la lectura
+        if (!isRevealed && selectedCards.length < 3 && !selectedCards.find(c => c.id === card.id)) {
             setSelectedCards([...selectedCards, card]);
         }
     };
 
     const revealReading = () => {
-        if (selectedCards.length === 3) setIsRevealed(true);
+        if (isRevealed) {
+            // LÓGICA DE NUEVA LECTURA
+            setSelectedCards([]); // Limpia las cartas seleccionadas
+            setIsRevealed(false);  // Oculta la sección de resultados
+            initGame();            // Opcional: Trae cartas nuevas para la siguiente ronda
+        } else {
+            // LÓGICA DE REVELAR DESTINO
+            if (selectedCards.length === 3) {
+                setIsRevealed(true);
+            }
+        }
     };
 
     const getCardLabel = (id) => {
