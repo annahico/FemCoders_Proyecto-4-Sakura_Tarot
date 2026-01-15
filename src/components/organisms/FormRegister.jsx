@@ -3,9 +3,16 @@ import { FormTitles } from "../atoms/FormTitles";
 import { ProteccionDatos } from "../atoms/ProteccionDatos";
 import { FormInputsRegister } from "../molecules/FormInputs";
 import { usersApi } from "../../services/usersApi";
-import { useState } from "react";
+import { Activity, useState } from "react";
+import { FormLogin } from "./FormLogIn";
 
 export const FormRegister = () => {
+  const [showLogin, setShowLogin] = useState(false)
+
+  const handleClick = () => {
+    setShowLogin(true)
+  }
+
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -35,8 +42,11 @@ export const FormRegister = () => {
   };
   return (
     <>
-      <div className="bg-[#fde8EE] z-1 w-50% rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col">
-        <a href="" className="inline-flex items-center font-medium text-[#551A8B] hover:underline">
+      {showLogin && <FormLogin/>}
+
+    <Activity mode={showLogin ? "hidden" : "visible"}>
+      <div className="bg-[#fde8EE] z-20 rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col fixed top-1/3">
+        <a onClick={handleClick} className="inline-flex items-center font-medium text-[#551A8B] hover:underline">
           iniciar session
         </a>
         <FormTitles></FormTitles>
@@ -50,6 +60,7 @@ export const FormRegister = () => {
           </form>
         </div>
       </div>
+    </Activity>
     </>
   );
 };

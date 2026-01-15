@@ -34,6 +34,13 @@
       "email": "charly@gmail.com",
       "password": "1234",
       "createdAt": "14 de enero de 2026"
+    },
+    {
+      "id": "f54e",
+      "username": "anna",
+      "email": "anna@gmail.com",
+      "password": "12345",
+      "createdAt": "15 de enero de 2026"
     }
   ],
   "readings": [
