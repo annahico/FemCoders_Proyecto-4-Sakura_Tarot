@@ -20,7 +20,6 @@ function App() {
       </main>
     </TarotProvider>
 
-    // Comentario tonto
 
   );
 }
