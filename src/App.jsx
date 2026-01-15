@@ -1,16 +1,28 @@
-import "./App.css";
-import { TarotProvider } from "./context/TarotProvider.jsx";
+import { useState } from 'react';
+import { TarotProvider } from "./context/TarotProvider";
 import { Background } from "./components/atoms/Background";
-import { FormPage } from "./pages/FormPage.jsx";
-import { GamePage } from "./pages/GamePage.jsx";
-import { FormLogin } from "./components/organisms/FormLogIn.jsx";
-import { FormRegister } from "./components/organisms/FormRegister.jsx";
+import { HomePage } from "./pages/HomePage";
+import { TarotPage } from "./pages/TarotPage";
+import "./App.css";
 
-export const App = () => {
+function App() {
+  const [inGame, setInGame] = useState(false);
+
   return (
-    <>
-      <FormLogin></FormLogin>
-      <FormRegister></FormRegister>
-    </>
+    <TarotProvider>
+      <Background />
+      <main className="relative z-10 w-full min-h-screen">
+        {!inGame ? (
+          <HomePage onStart={() => setInGame(true)} />
+        ) : (
+          <TarotPage />
+        )}
+      </main>
+    </TarotProvider>
+
+    // Comentario tonto
+
   );
-};
+}
+
+export default App; 
