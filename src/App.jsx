@@ -19,5 +19,8 @@ export const App = () => {
         )}
       </main>
     </TarotProvider>
+
+    // Comentario tonto
+
   );
 };
