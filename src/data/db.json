@@ -1,30 +1,44 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "María García",
       "email": "maria@example.com",
       "password": "123456",
       "createdAt": "10 de enero de 2026"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "Juan Pérez",
       "email": "juan@example.com",
       "password": "abcdef",
       "createdAt": "10 de enero de 2026"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "Ana López",
       "email": "ana@example.com",
       "password": "qwerty",
       "createdAt": "11 de enero de 2026"
+    },
+    {
+      "id": "4c08",
+      "username": "manon ",
+      "email": "manontatata@gmail.com",
+      "password": "123456",
+      "createdAt": "14 de enero de 2026"
+    },
+    {
+      "id": "fe55",
+      "username": "charly",
+      "email": "charly@gmail.com",
+      "password": "1234",
+      "createdAt": "14 de enero de 2026"
     }
   ],
   "readings": [
     {
-      "id": 1,
+      "id": "1",
       "userId": 1,
       "username": "María García",
       "date": "10 de enero de 2026",
@@ -59,7 +73,7 @@
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": 1,
       "username": "María García",
       "date": "10 de enero de 2026",
@@ -94,7 +108,7 @@
       }
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": 2,
       "username": "Juan Pérez",
       "date": "10 de enero de 2026",
@@ -129,7 +143,7 @@
       }
     },
     {
-      "id": 4,
+      "id": "4",
       "userId": 2,
       "username": "Juan Pérez",
       "date": "11 de enero de 2026",
@@ -164,7 +178,7 @@
       }
     },
     {
-      "id": 5,
+      "id": "5",
       "userId": 3,
       "username": "Ana López",
       "date": "11 de enero de 2026",
