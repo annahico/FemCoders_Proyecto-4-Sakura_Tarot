@@ -3,7 +3,8 @@ import { FormTitles } from "../atoms/FormTitles";
 import { ProteccionDatos } from "../atoms/ProteccionDatos";
 import { FormInputsRegister } from "../molecules/FormInputs";
 import { usersApi } from "../../services/usersApi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AlertDisplay } from "../molecules/alertDisplay";
 
 export const FormRegister = () => {
   const [form, setForm] = useState({
@@ -12,7 +13,19 @@ export const FormRegister = () => {
     password: "",
   });
 
+  const [alertMessage, setAlertMessage] = useState("");
+
   const { registerUser } = usersApi();
+
+  useEffect(() => {
+    if (alertMessage) {
+      const timer = setTimeout(() => {
+        setAlertMessage("");
+      }, 4000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [alertMessage]);
 
   const handleChange = (event) => {
     setForm({
@@ -27,14 +40,15 @@ export const FormRegister = () => {
     try {
       const response = await registerUser(form);
       console.log(" Usuario registrado:", response);
-      alert("Login Exitoso");
+      setAlertMessage("¡Registro exitoso! Te estamos redirigiendo a la página....");
     } catch (error) {
-      "X error al registro", error;
+      console.error("❌ Error al iniciar sesión:", error);
+      setAlertMessage("Error al registrarse: Inténtalo otra vez! ");
     }
-    alert("error");
   };
   return (
     <>
+      {alertMessage && <AlertDisplay message={alertMessage} />}
       <div className="bg-[#fde8EE] z-1 w-50% rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col">
         <a href="" className="inline-flex items-center font-medium text-[#551A8B] hover:underline">
           iniciar session
