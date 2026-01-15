@@ -1,10 +1,78 @@
-import React from 'react'
-import { CardSelection } from '../molecules/CardSelection'
+import React from 'react';
+import { useTarot } from '../../context/TarotContext';
+import { Cards } from '../atoms/Cards';
 
 export const CardReading = () => {
+  const { deck, selectedCards, handleSelect, revealReading, isRevealed } = useTarot();
+
+  if (!deck || deck.length === 0) return <p className="text-[#880E4F]">Cargando mazo mágico...</p>;
+
   return (
-    <div className=" flex justify-center relative bg-amber-300">
-        <CardSelection></CardSelection>
+    <div className="w-full max-w-6xl flex flex-col items-center gap-12">
+
+      {/* SECCIÓN SUPERIOR: SELECCIÓN DE CARTAS */}
+      <div className="bg-white/10 backdrop-blur-md rounded-[40px] p-10 border border-white/20 shadow-2xl w-full">
+        <p className="text-[#880E4F] mb-8 text-center font-medium italic">
+          Elige 3 cartas para conocer tu destino:
+        </p>
+
+        <div className="grid grid-cols-5 gap-x-6 gap-y-10 justify-items-center max-w-4xl mx-auto">
+          {deck.slice(0, 10).map((card) => (
+            <div
+              key={card.id}
+              onClick={() => handleSelect(card)}
+              className={`cursor-pointer transition-all duration-300 ${selectedCards.find(c => c.id === card.id)
+                  ? 'opacity-20 scale-90 pointer-events-none'
+                  : 'hover:-translate-y-2'
+                }`}
+            >
+              <Cards card={card} isRevealed={false} />
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <button
+            onClick={revealReading}
+            // Mantenemos el botón habilitado si ya se reveló para poder hacer clic en "Nueva Lectura"
+            disabled={selectedCards.length < 3 && !isRevealed}
+            className={`px-10 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border
+              ${(selectedCards.length === 3 || isRevealed)
+                ? 'bg-[#F48FB1]/40 border-[#880E4F]/30 text-[#880E4F] hover:bg-[#F48FB1]/60'
+                : 'bg-gray-300/20 border-gray-400/30 text-gray-500 cursor-not-allowed'}`}
+          >
+            {isRevealed ? 'Nueva Lectura' : '✨ Revelar Destino'}
+          </button>
+        </div>
+      </div>
+
+      {/* SECCIÓN INFERIOR: LECTURA REVELADA */}
+      {isRevealed && selectedCards.length === 3 && (
+        <div className="grid grid-cols-3 gap-10 w-full mt-10 animate-fade-in pb-20">
+          {['past', 'present', 'future'].map((tiempo, index) => {
+            const card = selectedCards[index];
+            const labels = { past: 'Pasado', present: 'Presente', future: 'Futuro' };
+
+            return (
+              <div key={tiempo} className="bg-white/15 backdrop-blur-xl p-8 rounded-t-[120px] border-t border-x border-white/40 flex flex-col items-center shadow-lg">
+                <span className="text-[#880E4F] text-xs uppercase tracking-[0.3em] mb-8 font-semibold">
+                  ✦ {labels[tiempo]}
+                </span>
+
+                <div className="scale-110 mb-6">
+                  <Cards card={card} isRevealed={true} />
+                </div>
+
+                <h3 className="text-[#880E4F] font-serif text-xl mb-3">{card.spanishName}</h3>
+
+                <p className="text-[#880E4F]/90 text-[13px] text-center leading-relaxed italic px-2">
+                  {card.meaning}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
-  )
-}
+  );
+};

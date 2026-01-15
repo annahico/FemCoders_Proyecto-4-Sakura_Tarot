@@ -1,14 +1,10 @@
-import React from 'react'
-import { HomeIcons } from '../components/organisms/HomeIcons'
-import {Background} from '../components/atoms/Background'
+import React from 'react';
+import { HomeIcons } from '../components/organisms/HomeIcons';
 
-export const HomePage = () => {
+export const HomePage = ({ onStart }) => {
   return (
-    <>
-      <Background></Background>
-      <div className="flex justify-center items-center min-h-screen ">
-          <HomeIcons/>
-      </div>
-    </>
-  )
-}
+    <div className="flex items-center justify-center min-h-screen">
+      <HomeIcons onTarotClick={onStart} />
+    </div>
+  );
+};

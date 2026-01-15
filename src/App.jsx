@@ -1,23 +1,25 @@
-import { useState } from "react";
-import "./App.css";
-import { TarotProvider } from "./context/TarotProvider.jsx";
+import { useState } from 'react';
+import { TarotProvider } from "./context/TarotProvider";
 import { Background } from "./components/atoms/Background";
-import { FormPage } from "./pages/FormPage.jsx";
-import { GamePage } from "./pages/GamePage.jsx";
+import { HomePage } from "./pages/HomePage";
+import { TarotPage } from "./pages/TarotPage";
+import "./App.css";
 
-export const App = () => {
-  const [isLogged, setIsLogged] = useState(true);
+function App() {
+  const [inGame, setInGame] = useState(false);
 
   return (
     <TarotProvider>
       <Background />
-      <main className="relative z-10">
-        {!isLogged ? (
-          <FormPage onLogin={() => setIsLogged(true)} />
+      <main className="relative z-10 w-full min-h-screen">
+        {!inGame ? (
+          <HomePage onStart={() => setInGame(true)} />
         ) : (
-          <GamePage />
+          <TarotPage />
         )}
       </main>
     </TarotProvider>
   );
-};
+}
+
+export default App; 
