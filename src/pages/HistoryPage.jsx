@@ -1,43 +1,72 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+export function HistoryPage() {
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('/ebeeaf4c-022f-401d-a7fa-62eb2ed7f2e9.png')",
+      }}
+    >
 
-export const HistoryPage = () => {
-    const navigate = useNavigate();
-    const savedReadings = []; 
+      <div className="w-95 rounded-3xl bg-white/40 backdrop-blur-xl shadow-2xl p-5">
 
-    return (
-        <div className="w-full min-h-screen flex flex-col items-center pt-8 pb-20 px-4">
-            <header className="text-center mb-12">
-                <h1 className="text-4xl font-serif text-[#880E4F] tracking-wide">
-                    Historial de Lecturas
-                </h1>
-                <p className="text-[11px] text-[#880E4F]/70 uppercase tracking-[0.3em] mt-2">
-                    Tus encuentros previos con el destino
-                </p>
-            </header>
+        <div className="text-center mb-4">
+          <h1 className="text-lg font-semibold text-pink-900">
+            El Amanecer Mágico
+          </h1>
+          <p className="text-xs text-pink-700">
+            Tarot del pasado, presente y futuro
+          </p>
+        </div>
 
-            <div className="bg-white/10 backdrop-blur-md rounded-[40px] p-10 border border-white/20 shadow-2xl w-full max-w-4xl flex flex-col items-center">
-                {savedReadings.length === 0 ? (
-                    <div className="text-center">
-                        <p className="text-[#880E4F] italic mb-6">Aún no has guardado ninguna lectura...</p>
-                        <button 
-                            onClick={() => navigate('/tarot')}
-                            className="px-8 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] bg-[#F48FB1]/40 border border-[#880E4F]/30 text-[#880E4F] hover:bg-[#F48FB1]/60 transition-all"
-                        >
-                            Ir a Consultar el Tarot
-                        </button>
-                    </div>
-                ) : (
-                    <p className="text-[#880E4F]">Aquí aparecerán tus cartas guardadas.</p>
-                )}
+
+        <div className="flex items-center justify-between mb-3">
+          <p className="text-sm font-medium text-pink-900">
+             tus lecturas guardadas:
+          </p>
+          <button className="text-pink-700 text-sm">🏠</button>
+        </div>
+
+
+        {[ 
+          { date: "Jueves 8 de Enero 2026, 17:30hrs" },
+          { date: "Viernes 9 de Enero 2026, 20:00hrs" },
+        ].map((item, idx) => (
+          <div
+            key={idx}
+            className="bg-pink-50/70 rounded-2xl p-4 mb-3 shadow"
+          >
+            <div className="grid grid-cols-3 gap-3 text-center mb-2">
+              {["Pasado", "Presente", "Futuro"].map((label) => (
+                <div key={label}>
+                  <p className="text-xs text-pink-800 mb-1">
+                    {label}
+                  </p>
+                  <div className="h-20 rounded-lg bg-pink-200/60 flex items-center justify-center">
+                    <span className="text-pink-700 text-xs">
+                      Carta
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <button 
-                onClick={() => navigate('/')}
-                className="mt-10 text-[#880E4F] text-[10px] uppercase tracking-widest hover:underline"
-            >
-                Volver al Inicio
-            </button>
+            <div className="flex items-center justify-between text-xs text-pink-700">
+              <span>{item.date}</span>
+              <button className="text-pink-600 hover:text-pink-800">
+                🗑️
+              </button>
+            </div>
+          </div>
+        ))}
+
+
+        <div className="flex justify-center mt-4">
+          <button className="px-6 py-2 rounded-full bg-white text-pink-800 text-sm font-medium shadow hover:bg-pink-50 transition">
+            🧹 Limpiar historial
+          </button>
         </div>
-    );
-};
+      </div>
+    </div>
+  );
+}
