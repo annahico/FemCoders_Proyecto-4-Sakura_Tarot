@@ -1,71 +1,112 @@
+import React, { useContext } from 'react';
+import { TarotContext } from '../context/TarotContext';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 export function HistoryPage() {
+  const { history, setHistory } = useContext(TarotContext);
+  const navigate = useNavigate();
+  const url = "http://localhost:3000/readings";
+
+  const handleDeleteOne = async (id) => {
+    try {
+      await axios.delete(`${url}/${id}`);
+      setHistory(prev => prev.filter(item => item.id !== id));
+      alert("Lectura eliminada");
+    } catch (error) {
+      console.error("Error al borrar:", error);
+    }
+  };
+
+  const handleClearAll = async () => {
+    if (window.confirm("¿Estás seguro de que quieres borrar todo el historial?")) {
+      try {
+        for (let item of history) {
+          await axios.delete(`${url}/${item.id}`);
+        }
+        setHistory([]);
+      } catch (error) {
+        console.error("Error al limpiar historial:", error);
+      }
+    }
+  };
+
   return (
     <div
-      className="min-h-screen flex items-center justify-center bg-cover bg-center"
-      style={{
-        backgroundImage:
-          "url('/ebeeaf4c-022f-401d-a7fa-62eb2ed7f2e9.png')",
-      }}
+      className="min-h-screen w-full flex flex-col items-center bg-cover bg-center p-4 md:p-10"
+      style={{ backgroundImage: "url('/ebeeaf4c-022f-401d-a7fa-62eb2ed7f2e9.png')" }}
     >
-
-      <div className="w-95 rounded-3xl bg-white/40 backdrop-blur-xl shadow-2xl p-5">
-
-        <div className="text-center mb-4">
-          <h1 className="text-lg font-semibold text-pink-900">
-            El Amanecer Mágico
-          </h1>
-          <p className="text-xs text-pink-700">
-            Tarot del pasado, presente y futuro
-          </p>
-        </div>
-
-
-        <div className="flex items-center justify-between mb-3">
-          <p className="text-sm font-medium text-pink-900">
-             tus lecturas guardadas:
-          </p>
-          <button className="text-pink-700 text-sm">🏠</button>
-        </div>
-
-
-        {[ 
-          { date: "Jueves 8 de Enero 2026, 17:30hrs" },
-          { date: "Viernes 9 de Enero 2026, 20:00hrs" },
-        ].map((item, idx) => (
-          <div
-            key={idx}
-            className="bg-pink-50/70 rounded-2xl p-4 mb-3 shadow"
-          >
-            <div className="grid grid-cols-3 gap-3 text-center mb-2">
-              {["Pasado", "Presente", "Futuro"].map((label) => (
-                <div key={label}>
-                  <p className="text-xs text-pink-800 mb-1">
-                    {label}
-                  </p>
-                  <div className="h-20 rounded-lg bg-pink-200/60 flex items-center justify-center">
-                    <span className="text-pink-700 text-xs">
-                      Carta
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between text-xs text-pink-700">
-              <span>{item.date}</span>
-              <button className="text-pink-600 hover:text-pink-800">
-                🗑️
-              </button>
-            </div>
+      <div className="w-full max-w-6xl rounded-3xl bg-white/40 backdrop-blur-xl shadow-2xl p-6 md:p-10 overflow-y-auto max-h-[90vh]">
+        
+        <header className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+          <div className="text-center md:text-left">
+            <h1 className="text-2xl md:text-3xl font-bold text-pink-900">El Amanecer Mágico</h1>
+            <p className="text-sm text-pink-700 italic">Tu cronología mística</p>
           </div>
-        ))}
-
-
-        <div className="flex justify-center mt-4">
-          <button className="px-6 py-2 rounded-full bg-white text-pink-800 text-sm font-medium shadow hover:bg-pink-50 transition">
-            🧹 Limpiar historial
+          
+          <button 
+            onClick={() => navigate('/')}
+            className="bg-white/60 p-3 rounded-full shadow-lg hover:scale-110 transition-transform text-2xl"
+          >
+            ⭐
           </button>
-        </div>
+        </header>
+
+        {history.length === 0 ? (
+          <p className="text-center text-pink-800 py-20 italic text-lg">No tienes lecturas guardadas.</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {history.map((item) => (
+              <div key={item.id} className="bg-white/60 rounded-2xl p-5 shadow-md border border-white/50 flex flex-col justify-between hover:shadow-xl transition-shadow">
+                
+                <div className="grid grid-cols-3 gap-2 mb-4 text-center">
+                  {['past', 'present', 'future'].map((time) => (
+                    <div key={time} className="flex flex-col items-center">
+                      <p className="text-[10px] md:text-xs text-pink-800 mb-1 font-bold uppercase">
+                        {time === 'past' ? 'Pasado' : time === 'present' ? 'Presente' : 'Futuro'}
+                      </p>
+                      {item.cards[time] ? (
+                        <img 
+                          src={item.cards[time].sakuraCard}
+                          alt={item.cards[time].spanishName}
+                          className="h-24 w-full object-cover rounded-lg shadow-sm border border-pink-100"
+                        />
+                      ) : (
+                        <div className="h-24 w-full bg-pink-100 rounded-lg border-2 border-dashed border-pink-200" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="border-t border-pink-200/50 pt-3 mt-auto">
+                  <div className="flex items-center justify-between text-xs text-pink-900 font-medium">
+                    <span>{item.date}</span>
+                    <button 
+                      onClick={() => handleDeleteOne(item.id)}
+                      className="bg-red-100/50 p-2 rounded-full text-red-600 hover:bg-red-500 hover:text-white transition-colors"
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                  <p className="text-[10px] text-pink-700 mt-1 uppercase font-bold tracking-tighter">
+                    Consultante: {item.username || 'Anónimo'}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {history.length > 0 && (
+          <div className="flex justify-center mt-10">
+            <button 
+              onClick={handleClearAll}
+              className="px-10 py-3 rounded-full bg-pink-800 text-white font-bold shadow-lg hover:bg-pink-900 transition-colors uppercase tracking-widest text-sm"
+            >
+              🧹 Limpiar historial
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

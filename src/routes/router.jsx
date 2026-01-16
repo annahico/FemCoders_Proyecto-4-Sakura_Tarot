@@ -1,8 +1,10 @@
+// src/routes/router.jsx
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../layout/MainLayout";
 import { HomePage } from "../pages/HomePage";
 import { TarotPage } from "../pages/TarotPage";
 import { FormPage } from "../pages/FormPage";
+import { HistoryPage } from "../pages/HistoryPage"; 
 
 const getSessionKey = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -25,6 +27,10 @@ export const router = createBrowserRouter([
       { 
         path: "login", 
         element: <FormPage /> 
+      },
+      { 
+        path: "history", 
+        element: <HistoryPage /> 
       },
     ],
   },

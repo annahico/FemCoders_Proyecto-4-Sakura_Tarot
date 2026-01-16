@@ -4,6 +4,7 @@
                     ┌───────────────────────┐
                     │   BIENVENIDA          │
                     │ - Input: Nombre       │
+                    │ - Registro: Nombre    │
                     │ - Validación activa   │
                     └───────────┬───────────┘
                                 |

@@ -45,7 +45,6 @@ export const FormRegister = () => {
       console.log(" Usuario registrado:", response);
       setAlertMessage("¡Registro exitoso! Te estamos redirigiendo a la página....");
       
-      // 4. Cambia onSuccess por la navegación real al tarot
       setTimeout(() => {
         navigate("/tarot"); 
       }, 2000);
