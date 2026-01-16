@@ -2,15 +2,13 @@ import React from 'react';
 import { useTarot } from '../../context/TarotContext';
 import { Cards } from '../atoms/Cards';
 
-export const CardReading = () => {
+export const CardReading = ({ onGoToHistory }) => {
   const { deck, selectedCards, handleSelect, revealReading, isRevealed } = useTarot();
 
   if (!deck || deck.length === 0) return <p className="text-[#880E4F]">Cargando mazo mágico...</p>;
 
   return (
     <div className="w-full max-w-6xl flex flex-col items-center gap-12">
-
-      {/* SECCIÓN SUPERIOR: SELECCIÓN DE CARTAS */}
       <div className="bg-white/10 backdrop-blur-md rounded-[40px] p-10 border border-white/20 shadow-2xl w-full">
         <p className="text-[#880E4F] mb-8 text-center font-medium italic">
           Elige 3 cartas para conocer tu destino:
@@ -22,8 +20,8 @@ export const CardReading = () => {
               key={card.id}
               onClick={() => handleSelect(card)}
               className={`cursor-pointer transition-all duration-300 ${selectedCards.find(c => c.id === card.id)
-                  ? 'opacity-20 scale-90 pointer-events-none'
-                  : 'hover:-translate-y-2'
+                ? 'opacity-20 scale-90 pointer-events-none'
+                : 'hover:-translate-y-2'
                 }`}
             >
               <Cards card={card} isRevealed={false} />
@@ -31,10 +29,9 @@ export const CardReading = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center items-center mt-10 gap-6"> 
           <button
             onClick={revealReading}
-            // Mantenemos el botón habilitado si ya se reveló para poder hacer clic en "Nueva Lectura"
             disabled={selectedCards.length < 3 && !isRevealed}
             className={`px-10 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border
               ${(selectedCards.length === 3 || isRevealed)
@@ -43,10 +40,16 @@ export const CardReading = () => {
           >
             {isRevealed ? 'Nueva Lectura' : '✨ Revelar Destino'}
           </button>
+
+          <button
+            onClick={onGoToHistory}
+            className="px-8 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border border-[#880E4F]/30 bg-white/10 text-[#880E4F] hover:bg-white/30 flex items-center gap-2 shadow-sm"
+          >
+            📜 Historial
+          </button>
         </div>
       </div>
 
-      {/* SECCIÓN INFERIOR: LECTURA REVELADA */}
       {isRevealed && selectedCards.length === 3 && (
         <div className="grid grid-cols-3 gap-10 w-full mt-10 animate-fade-in pb-20">
           {['past', 'present', 'future'].map((tiempo, index) => {
