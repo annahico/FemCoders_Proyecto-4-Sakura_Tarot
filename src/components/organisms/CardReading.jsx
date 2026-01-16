@@ -1,11 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTarot } from '../../context/TarotContext';
 import { Cards } from '../atoms/Cards';
 
-export const CardReading = ({ onGoToHistory }) => {
+export const CardReading = () => {
   const { deck, selectedCards, handleSelect, revealReading, isRevealed } = useTarot();
+  const navigate = useNavigate();
 
   if (!deck || deck.length === 0) return <p className="text-[#880E4F]">Cargando mazo mágico...</p>;
+
+  // 1. Usamos la función para navegar
+  const handleGoToHistory = () => {
+    navigate('/history');
+  };
 
   return (
     <div className="w-full max-w-6xl flex flex-col items-center gap-12">
@@ -19,10 +26,11 @@ export const CardReading = ({ onGoToHistory }) => {
             <div
               key={card.id}
               onClick={() => handleSelect(card)}
-              className={`cursor-pointer transition-all duration-300 ${selectedCards.find(c => c.id === card.id)
+              className={`cursor-pointer transition-all duration-300 ${
+                selectedCards.find(c => c.id === card.id)
                 ? 'opacity-20 scale-90 pointer-events-none'
                 : 'hover:-translate-y-2'
-                }`}
+              }`}
             >
               <Cards card={card} isRevealed={false} />
             </div>
@@ -41,8 +49,9 @@ export const CardReading = ({ onGoToHistory }) => {
             {isRevealed ? 'Nueva Lectura' : '✨ Revelar Destino'}
           </button>
 
+          {/* 2. Asignamos la función aquí para eliminar el error de ESLint */}
           <button
-            onClick={onGoToHistory}
+            onClick={handleGoToHistory}
             className="px-8 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border border-[#880E4F]/30 bg-white/10 text-[#880E4F] hover:bg-white/30 flex items-center gap-2 shadow-sm"
           >
             📜 Historial
@@ -51,7 +60,7 @@ export const CardReading = ({ onGoToHistory }) => {
       </div>
 
       {isRevealed && selectedCards.length === 3 && (
-        <div className="grid grid-cols-3 gap-10 w-full mt-10 animate-fade-in pb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full mt-10 animate-fade-in pb-20">
           {['past', 'present', 'future'].map((tiempo, index) => {
             const card = selectedCards[index];
             const labels = { past: 'Pasado', present: 'Presente', future: 'Futuro' };

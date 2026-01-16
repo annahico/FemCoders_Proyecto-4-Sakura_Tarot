@@ -12,7 +12,7 @@ export const FormPage = () => {
                     <FormLogin />
                     <button 
                         onClick={() => setIsLogin(false)}
-                        className="fixed bottom-10 text-[#551A8B] hover:underline z-50 cursor-pointer bg-white/30 px-4 py-2 rounded-full backdrop-blur-md"
+                        className="fixed bottom-10 text-[#8b1a65] hover:underline z-50 cursor-pointer bg-white/30 px-4 py-2 rounded-full backdrop-blur-md"
                     >
                         ¿No tienes cuenta? Regístrate aquí
                     </button>
@@ -22,7 +22,7 @@ export const FormPage = () => {
                     <FormRegister />
                     <button 
                         onClick={() => setIsLogin(true)}
-                        className="fixed bottom-10 text-[#551A8B] hover:underline z-50 cursor-pointer bg-white/30 px-4 py-2 rounded-full backdrop-blur-md"
+                        className="fixed bottom-10 text-[#8b1a65] hover:underline z-50 cursor-pointer bg-white/30 px-4 py-2 rounded-full backdrop-blur-md"
                     >
                         ¿Ya tienes cuenta? Inicia sesión
                     </button>
