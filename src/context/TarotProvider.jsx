@@ -4,7 +4,6 @@ import { sakuraApi } from '../services/sakuraApi';
 import axios from 'axios';
 
 const api = sakuraApi();
-// CAMBIO: La URL ahora apunta a "readings" que es lo que tienes en db.json
 const url = "http://localhost:3000/readings"; 
 
 export const TarotProvider = ({ children }) => {
@@ -46,7 +45,6 @@ export const TarotProvider = ({ children }) => {
         return () => { isMounted = false; };
     }, [fetchHistory, initGame]);
 
-    // Función saveReading adaptada a tu db.json
     const saveReading = async (userId, username) => {
         try {
             const newReading = {

@@ -4,7 +4,7 @@ import { Layout } from "../layout/MainLayout";
 import { HomePage } from "../pages/HomePage";
 import { TarotPage } from "../pages/TarotPage";
 import { FormPage } from "../pages/FormPage";
-import { HistoryPage } from "../pages/HistoryPage"; // <--- IMPORTANTE
+import { HistoryPage } from "../pages/HistoryPage"; 
 
 const getSessionKey = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
         element: <FormPage /> 
       },
       { 
-        path: "history", // <--- AHORA EL 404 DESAPARECERÁ
+        path: "history", 
         element: <HistoryPage /> 
       },
     ],

@@ -9,7 +9,6 @@ export const CardReading = () => {
 
   if (!deck || deck.length === 0) return <p className="text-[#880E4F]">Cargando mazo mágico...</p>;
 
-  // 1. Usamos la función para navegar
   const handleGoToHistory = () => {
     navigate('/history');
   };
@@ -49,7 +48,6 @@ export const CardReading = () => {
             {isRevealed ? 'Nueva Lectura' : '✨ Revelar Destino'}
           </button>
 
-          {/* 2. Asignamos la función aquí para eliminar el error de ESLint */}
           <button
             onClick={handleGoToHistory}
             className="px-8 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border border-[#880E4F]/30 bg-white/10 text-[#880E4F] hover:bg-white/30 flex items-center gap-2 shadow-sm"

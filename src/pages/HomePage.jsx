@@ -9,7 +9,7 @@ export const HomePage = () => {
 
   const handleIconClick = (type) => {
   if (type === 'history') {
-    navigate('/history'); // Coincide con el path del router
+    navigate('/history');
   } else {
     setShowForm(true);
   }
@@ -21,7 +21,6 @@ export const HomePage = () => {
         <HomeIcons onIconClick={handleIconClick} />   
         {showForm && (
           <div className="absolute inset-0 z-50 flex items-center justify-center">
-            {/* Agregué un fondo semi-transparente para que el formulario resalte y puedas cerrarlo si quieres */}
             <div className="fixed inset-0 bg-black/20" onClick={() => setShowForm(false)}></div>
             <div className="relative z-10">
               <FormRegister />

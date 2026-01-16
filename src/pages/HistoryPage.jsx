@@ -36,7 +36,6 @@ export function HistoryPage() {
       className="min-h-screen w-full flex flex-col items-center bg-cover bg-center p-4 md:p-10"
       style={{ backgroundImage: "url('/ebeeaf4c-022f-401d-a7fa-62eb2ed7f2e9.png')" }}
     >
-      {/* Contenedor Principal: Ahora más ancho en Desktop */}
       <div className="w-full max-w-6xl rounded-3xl bg-white/40 backdrop-blur-xl shadow-2xl p-6 md:p-10 overflow-y-auto max-h-[90vh]">
         
         <header className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
@@ -56,7 +55,6 @@ export function HistoryPage() {
         {history.length === 0 ? (
           <p className="text-center text-pink-800 py-20 italic text-lg">No tienes lecturas guardadas.</p>
         ) : (
-          /* GRID: 1 columna en móvil, 2 en tablets, 3 en desktop */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {history.map((item) => (
               <div key={item.id} className="bg-white/60 rounded-2xl p-5 shadow-md border border-white/50 flex flex-col justify-between hover:shadow-xl transition-shadow">
