@@ -76,6 +76,13 @@
       "email": "pepinillo@gmail.com",
       "password": "12345",
       "createdAt": "16 de enero de 2026"
+    },
+    {
+      "id": "6dba",
+      "username": "moras",
+      "email": "moras@moras.com",
+      "password": "12345",
+      "createdAt": "16 de enero de 2026"
     }
   ],
   "readings": [

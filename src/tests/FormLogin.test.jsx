@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
+import { MemoryRouter } from 'react-router-dom'; 
 import { FormLogin } from '../components/organisms/FormLogIn'; 
 
-// 1. Mock de la API
 vi.mock('../services/usersApi', () => ({
     usersApi: () => ({
         loginUser: vi.fn().mockResolvedValue({ username: 'Sakura' })
@@ -12,7 +12,13 @@ vi.mock('../services/usersApi', () => ({
 
 describe('FormLogin Unit Test', () => {
     it('debería actualizar los valores de los inputs al escribir', async () => {
-        render(<FormLogin />);
+        // Envolvemos el componente en MemoryRouter
+        render(
+            <MemoryRouter>
+                <FormLogin />
+            </MemoryRouter>
+        );
+        
         const user = userEvent.setup();
         const emailInput = screen.getByPlaceholderText(/email/i);
         const passwordInput = screen.getByPlaceholderText(/password/i);
@@ -25,13 +31,19 @@ describe('FormLogin Unit Test', () => {
     });
 
     it('debería mostrar el mensaje de bienvenida tras un login exitoso', async () => {
-        render(<FormLogin />);
+        render(
+            <MemoryRouter>
+                <FormLogin />
+            </MemoryRouter>
+        );
+        
         const user = userEvent.setup();
 
         await user.type(screen.getByPlaceholderText(/email/i), 'test@correo.com');
         await user.type(screen.getByPlaceholderText(/password/i), '123456');
         await user.click(screen.getByRole('button', { name: /Iniciar Session/i }));
 
+        // findByText es asíncrono y esperará a que el mensaje aparezca
         const welcomeMessage = await screen.findByText(/¡Bienvenida Sakura!/i);
         
         expect(welcomeMessage).toBeTruthy();
