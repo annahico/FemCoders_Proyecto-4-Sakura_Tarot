@@ -8,8 +8,6 @@ export const TarotProvider = ({ children }) => {
     const [deck, setDeck] = useState([]);
     const [selectedCards, setSelectedCards] = useState([]);
     const [isRevealed, setIsRevealed] = useState(false);
-
-    // Función para obtener cartas nuevas y barajar
     const initGame = async () => {
         try {
             const cards = await api.getRandomCards(10); 
@@ -27,7 +25,6 @@ export const TarotProvider = ({ children }) => {
     }, []);
 
     const handleSelect = (card) => {
-        // Solo permite seleccionar si no se ha revelado la lectura
         if (!isRevealed && selectedCards.length < 3 && !selectedCards.find(c => c.id === card.id)) {
             setSelectedCards([...selectedCards, card]);
         }
@@ -35,12 +32,10 @@ export const TarotProvider = ({ children }) => {
 
     const revealReading = () => {
         if (isRevealed) {
-            // LÓGICA DE NUEVA LECTURA
-            setSelectedCards([]); // Limpia las cartas seleccionadas
-            setIsRevealed(false);  // Oculta la sección de resultados
-            initGame();            // Opcional: Trae cartas nuevas para la siguiente ronda
+            setSelectedCards([]); 
+            setIsRevealed(false); 
+            initGame();            
         } else {
-            // LÓGICA DE REVELAR DESTINO
             if (selectedCards.length === 3) {
                 setIsRevealed(true);
             }

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const HistoryPage = () => {
     const navigate = useNavigate();
-    // Por ahora, simulamos que no hay lecturas guardadas
     const savedReadings = []; 
 
     return (

@@ -34,7 +34,6 @@ export const CardReading = () => {
         <div className="flex justify-center mt-10">
           <button
             onClick={revealReading}
-            // Mantenemos el botón habilitado si ya se reveló para poder hacer clic en "Nueva Lectura"
             disabled={selectedCards.length < 3 && !isRevealed}
             className={`px-10 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border
               ${(selectedCards.length === 3 || isRevealed)
@@ -46,7 +45,6 @@ export const CardReading = () => {
         </div>
       </div>
 
-      {/* SECCIÓN INFERIOR: LECTURA REVELADA */}
       {isRevealed && selectedCards.length === 3 && (
         <div className="grid grid-cols-3 gap-10 w-full mt-10 animate-fade-in pb-20">
           {['past', 'present', 'future'].map((tiempo, index) => {
