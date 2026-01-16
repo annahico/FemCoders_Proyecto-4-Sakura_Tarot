@@ -4,7 +4,7 @@ import { ProteccionDatos } from "../atoms/ProteccionDatos";
 import { FormInputsRegister } from "../molecules/FormInputs";
 import { usersApi } from "../../services/usersApi";
 import { Activity, useEffect, useState } from "react";
-import { AlertDisplay } from "../molecules/alertDisplay";
+import { AlertDisplay } from "../molecules/AlertDisplay";
 import { FormLogin } from "./FormLogIn";
 import { useNavigate } from "react-router-dom"; 
 

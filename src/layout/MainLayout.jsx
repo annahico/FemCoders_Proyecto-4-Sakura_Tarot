@@ -1,4 +1,3 @@
-// src/layout/MainLayout.jsx
 import { Outlet } from "react-router-dom";
 import { TarotProvider } from "../context/TarotProvider"; 
 import { Background } from "../components/atoms/Background";
