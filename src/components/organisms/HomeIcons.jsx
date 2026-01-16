@@ -4,7 +4,6 @@ import { ReadingIcon } from '../atoms/ReadingIcon'
 import { HistoryIcon } from '../atoms/HistoryIcon'
 import { FormLogin } from "./FormLogIn";
 import { FormRegister } from "./FormRegister";
-
 import { HomeTitle } from '../atoms/HomeTitle'
 
 export const HomeIcons = () => {
