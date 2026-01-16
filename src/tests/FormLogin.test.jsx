@@ -12,7 +12,6 @@ vi.mock('../services/usersApi', () => ({
 
 describe('FormLogin Unit Test', () => {
     it('debería actualizar los valores de los inputs al escribir', async () => {
-        // Envolvemos el componente en MemoryRouter
         render(
             <MemoryRouter>
                 <FormLogin />
@@ -43,7 +42,6 @@ describe('FormLogin Unit Test', () => {
         await user.type(screen.getByPlaceholderText(/password/i), '123456');
         await user.click(screen.getByRole('button', { name: /Iniciar Session/i }));
 
-        // findByText es asíncrono y esperará a que el mensaje aparezca
         const welcomeMessage = await screen.findByText(/¡Bienvenida Sakura!/i);
         
         expect(welcomeMessage).toBeTruthy();

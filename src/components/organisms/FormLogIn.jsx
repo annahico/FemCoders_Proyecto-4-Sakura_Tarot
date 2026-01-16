@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 export const FormLogin = () => { 
   const [form, setForm] = useState({
-    username: "", // Sincronizado con tus inputs
+    username: "", 
     email: "",
     password: "",
   });
@@ -35,7 +35,6 @@ export const FormLogin = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      // Usamos el estado en minúsculas para que coincida con tu db.json
       const response = await loginUser(form.email, form.password);
       
       if (response) {
@@ -55,7 +54,6 @@ export const FormLogin = () => {
   return (
     <>
       {alertMessage && <AlertDisplay message={alertMessage} />}
-      {/* Respetando exactamente tus clases originales de posicionamiento y color */}
       <div className="bg-[#fde8EE] w-fit z-30 rounded-2xl px-10 py-5 flex flex-col items-center relative shadow-xl">
         <h1 className="text-[#6a4a4a] text-2xl font-semibold p-2">Bienvenida</h1>
         <form onSubmit={handleSubmit}>

@@ -2,7 +2,6 @@ import React from 'react';
 import { useTarot } from '../../context/TarotContext';
 import { Cards } from '../atoms/Cards';
 
-// 1. Asegúrate de recibir onGoToHistory como prop
 export const CardReading = ({ onGoToHistory }) => {
   const { deck, selectedCards, handleSelect, revealReading, isRevealed } = useTarot();
 
@@ -10,8 +9,6 @@ export const CardReading = ({ onGoToHistory }) => {
 
   return (
     <div className="w-full max-w-6xl flex flex-col items-center gap-12">
-
-      {/* SECCIÓN SUPERIOR: SELECCIÓN DE CARTAS */}
       <div className="bg-white/10 backdrop-blur-md rounded-[40px] p-10 border border-white/20 shadow-2xl w-full">
         <p className="text-[#880E4F] mb-8 text-center font-medium italic">
           Elige 3 cartas para conocer tu destino:
@@ -32,7 +29,6 @@ export const CardReading = ({ onGoToHistory }) => {
           ))}
         </div>
 
-        {/* CONTENEDOR DE BOTONES ALINEADOS */}
         <div className="flex justify-center items-center mt-10 gap-6"> 
           <button
             onClick={revealReading}

@@ -7,14 +7,8 @@ export const HomePage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen w-full relative">
-      
-      {/* Contenedor relativo para que el formulario flote justo aquí */}
       <div className="relative flex flex-col items-center">
-        
-        {/* Los iconos y el logo de fondo */}
-        <HomeIcons onIconClick={() => setShowForm(true)} />
-
-        {/* El formulario aparece ENCIMA del logo si showForm es true */}
+        <HomeIcons onIconClick={() => setShowForm(true)} />   
         {showForm && (
           <div className="absolute inset-0 z-50 flex items-center justify-center">
             <FormRegister />

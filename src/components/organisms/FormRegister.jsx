@@ -8,9 +8,9 @@ import { AlertDisplay } from "../molecules/alertDisplay";
 import { FormLogin } from "./FormLogIn";
 import { useNavigate } from "react-router-dom"; 
 
-export const FormRegister = () => { // 2. Ya no recibe onSuccess
+export const FormRegister = () => { 
   const [showLogin, setShowLogin] = useState(false);
-  const navigate = useNavigate(); // 3. Inicializa el navegador
+  const navigate = useNavigate(); 
 
   const handleClick = () => {
     setShowLogin(true);
@@ -60,7 +60,7 @@ export const FormRegister = () => { // 2. Ya no recibe onSuccess
     <>
       {alertMessage && <AlertDisplay message={alertMessage} />}
       {showLogin ? (
-        <FormLogin /> // 5. Ya no pasa la prop onSuccess
+        <FormLogin /> 
       ) : (
         <Activity mode="visible">
           <div className="bg-[#fde8EE] z-20 rounded-2xl px-10 py-5 flex flex-col relative shadow-xl">

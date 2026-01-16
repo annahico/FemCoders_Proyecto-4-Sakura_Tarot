@@ -1,4 +1,3 @@
-// src/pages/FormPage.jsx
 import { useState } from "react";
 import { FormLogin } from "../components/organisms/FormLogIn";
 import { FormRegister } from "../components/organisms/FormRegister";
