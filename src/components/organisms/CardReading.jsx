@@ -9,12 +9,19 @@ export const CardReading = () => {
 
   if (!deck || deck.length === 0) return <p className="text-[#880E4F]">Cargando mazo mágico...</p>;
 
-  const handleGoToHistory = () => {
-    navigate('/history');
-  };
-
   return (
-    <div className="w-full max-w-6xl flex flex-col items-center gap-12">
+    <div className="w-full max-w-6xl flex flex-col items-center gap-12 relative">
+      
+      <div className="w-full flex justify-end px-10">
+        <button 
+          onClick={() => navigate('/')} 
+          className="bg-white/40 p-3 rounded-full text-2xl hover:scale-125 transition-transform shadow-lg border border-white/50"
+          title="Volver al Inicio"
+        >
+          🏠
+        </button>
+      </div>
+
       <div className="bg-white/10 backdrop-blur-md rounded-[40px] p-10 border border-white/20 shadow-2xl w-full">
         <p className="text-[#880E4F] mb-8 text-center font-medium italic">
           Elige 3 cartas para conocer tu destino:
@@ -49,7 +56,7 @@ export const CardReading = () => {
           </button>
 
           <button
-            onClick={handleGoToHistory}
+            onClick={() => navigate('/history')}
             className="px-8 py-2 rounded-full uppercase text-[10px] tracking-[0.2em] transition-all border border-[#880E4F]/30 bg-white/10 text-[#880E4F] hover:bg-white/30 flex items-center gap-2 shadow-sm"
           >
             📜 Historial
@@ -62,19 +69,15 @@ export const CardReading = () => {
           {['past', 'present', 'future'].map((tiempo, index) => {
             const card = selectedCards[index];
             const labels = { past: 'Pasado', present: 'Presente', future: 'Futuro' };
-
             return (
               <div key={tiempo} className="bg-white/15 backdrop-blur-xl p-8 rounded-t-[120px] border-t border-x border-white/40 flex flex-col items-center shadow-lg">
                 <span className="text-[#880E4F] text-xs uppercase tracking-[0.3em] mb-8 font-semibold">
                   ✦ {labels[tiempo]}
                 </span>
-
                 <div className="scale-110 mb-6">
                   <Cards card={card} isRevealed={true} />
                 </div>
-
                 <h3 className="text-[#880E4F] font-serif text-xl mb-3">{card.spanishName}</h3>
-
                 <p className="text-[#880E4F]/90 text-[13px] text-center leading-relaxed italic px-2">
                   {card.meaning}
                 </p>
