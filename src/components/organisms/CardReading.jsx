@@ -54,7 +54,6 @@ export const CardReading = ({ onGoToHistory }) => {
         </div>
       </div>
 
-      {/* SECCIÓN INFERIOR: LECTURA REVELADA */}
       {isRevealed && selectedCards.length === 3 && (
         <div className="grid grid-cols-3 gap-10 w-full mt-10 animate-fade-in pb-20">
           {['past', 'present', 'future'].map((tiempo, index) => {

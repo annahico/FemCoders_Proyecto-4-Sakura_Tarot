@@ -6,7 +6,7 @@ import { usersApi } from "../../services/usersApi";
 import { Activity, useEffect, useState } from "react";
 import { AlertDisplay } from "../molecules/alertDisplay";
 import { FormLogin } from "./FormLogIn";
-import { useNavigate } from "react-router-dom"; // 1. Importa el hook
+import { useNavigate } from "react-router-dom"; 
 
 export const FormRegister = () => { // 2. Ya no recibe onSuccess
   const [showLogin, setShowLogin] = useState(false);
@@ -63,7 +63,7 @@ export const FormRegister = () => { // 2. Ya no recibe onSuccess
         <FormLogin /> // 5. Ya no pasa la prop onSuccess
       ) : (
         <Activity mode="visible">
-          <div className="bg-[#fde8EE] z-20 rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col fixed top-1/3">
+          <div className="bg-[#fde8EE] z-20 rounded-2xl px-10 py-5 flex flex-col relative shadow-xl">
             <a onClick={handleClick} className="inline-flex items-center font-medium text-[#551A8B] hover:underline cursor-pointer">
               Iniciar Session
             </a>

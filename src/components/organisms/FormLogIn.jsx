@@ -56,7 +56,7 @@ export const FormLogin = () => {
     <>
       {alertMessage && <AlertDisplay message={alertMessage} />}
       {/* Respetando exactamente tus clases originales de posicionamiento y color */}
-      <div className="bg-[#fde8EE] w-fit z-30 rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col items-center fixed top-1/3">
+      <div className="bg-[#fde8EE] w-fit z-30 rounded-2xl px-10 py-5 flex flex-col items-center relative shadow-xl">
         <h1 className="text-[#6a4a4a] text-2xl font-semibold p-2">Bienvenida</h1>
         <form onSubmit={handleSubmit}>
           <FormInputsLogIn form={form} handleChange={handleChange} />

@@ -1,18 +1,34 @@
+// src/routes/router.jsx
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "../layout/MainLayout";
 import { HomePage } from "../pages/HomePage";
 import { TarotPage } from "../pages/TarotPage";
 import { FormPage } from "../pages/FormPage";
 
-// src/routes/router.jsx
+// Función para obtener un identificador del usuario
+const getSessionKey = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  return user ? user.id : "guest";
+};
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    Component: Layout, // El componente que creamos arriba
+    // Usamos 'element' con la 'key' para resetear el TarotProvider al cambiar de usuario
+    element: <Layout key={getSessionKey()} />, 
     children: [
-      { index: true, Component: HomePage },
-      { path: "tarot", Component: TarotPage }, // Al ser hijo, entra dentro del Provider
-      { path: "login", Component: FormPage }
+      { 
+        index: true, 
+        element: <HomePage /> 
+      },
+      { 
+        path: "tarot", 
+        element: <TarotPage /> 
+      },
+      { 
+        path: "login", 
+        element: <FormPage /> 
+      },
     ],
   },
 ]);
