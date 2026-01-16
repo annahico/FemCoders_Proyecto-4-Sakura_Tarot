@@ -16,15 +16,18 @@ export const HomeIcons = ({ onIconClick }) => {
           <Logo />
         </div>
       
+        {/* Pasamos 'reading' cuando se hace clic en Tarot */}
         <div 
           className="col-start-1 row-start-2 cursor-pointer transition-transform hover:scale-110" 
-          onClick={onIconClick}
+          onClick={() => onIconClick('reading')} 
         >
           <ReadingIcon />
         </div>
+
+        {/* Pasamos 'history' cuando se hace clic en Historial */}
         <div 
           className="col-start-3 row-start-2 cursor-pointer transition-transform hover:scale-110" 
-          onClick={onIconClick}
+          onClick={() => onIconClick('history')}
         >
           <HistoryIcon />
         </div>
