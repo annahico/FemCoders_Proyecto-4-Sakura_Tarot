@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TarotContext } from './TarotContext'; 
+import { TarotContext } from './TarotContext';
 import { sakuraApi } from '../services/sakuraApi';
 
 const api = sakuraApi();
@@ -8,27 +8,38 @@ export const TarotProvider = ({ children }) => {
     const [deck, setDeck] = useState([]);
     const [selectedCards, setSelectedCards] = useState([]);
     const [isRevealed, setIsRevealed] = useState(false);
+    const initGame = async () => {
+        try {
+            const cards = await api.getRandomCards(10); 
+            setDeck(cards);
+        } catch (error) {
+            console.error("Error cargando cartas:", error);
+        }
+    };
 
     useEffect(() => {
-        const initGame = async () => {
-            try {
-                const cards = await api.getRandomCards(10);
-                setDeck(cards);
-            } catch (error) {
-                console.error("Error cargando cartas:", error);
-            }
+        const loadGame = async () => {
+            await initGame();
         };
-        initGame();
+        loadGame();
     }, []);
 
     const handleSelect = (card) => {
-        if (selectedCards.length < 3 && !selectedCards.find(c => c.id === card.id)) {
+        if (!isRevealed && selectedCards.length < 3 && !selectedCards.find(c => c.id === card.id)) {
             setSelectedCards([...selectedCards, card]);
         }
     };
 
     const revealReading = () => {
-        if (selectedCards.length === 3) setIsRevealed(true);
+        if (isRevealed) {
+            setSelectedCards([]); 
+            setIsRevealed(false); 
+            initGame();            
+        } else {
+            if (selectedCards.length === 3) {
+                setIsRevealed(true);
+            }
+        }
     };
 
     const getCardLabel = (id) => {
