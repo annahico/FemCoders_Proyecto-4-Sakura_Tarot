@@ -27,7 +27,7 @@ export const FormRegister = ({ onSuccess }) => { // Recibe onSuccess como prop
     if (alertMessage) {
       const timer = setTimeout(() => {
         setAlertMessage("");
-      }, 4000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [alertMessage]);
@@ -46,7 +46,7 @@ export const FormRegister = ({ onSuccess }) => { // Recibe onSuccess como prop
       // Llamamos a la función que cambia la pantalla después de 4 segundos
       setTimeout(() => {
         if (onSuccess) onSuccess(); 
-      }, 4000);
+      }, 2000);
 
     } catch (error) {
       console.error("❌ Error al iniciar sesión:", error);

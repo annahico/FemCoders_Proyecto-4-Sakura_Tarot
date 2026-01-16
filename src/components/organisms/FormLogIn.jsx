@@ -19,7 +19,7 @@ export const FormLogin = ({ onSuccess }) => {
     if (alertMessage) {
       const timer = setTimeout(() => {
         setAlertMessage("");
-      }, 4000);
+      }, 2000);
       return () => clearTimeout(timer);
     }
   }, [alertMessage]);
