@@ -3,17 +3,18 @@ import { FormInputsLogIn } from "../molecules/FormInputs";
 import { useEffect, useState } from "react";
 import { usersApi } from "../../services/usersApi";
 import { AlertDisplay } from "../molecules/alertDisplay";
+import { useNavigate } from "react-router-dom";
 
-// Pasamos onSuccess como prop para activar el cambio de pantalla en App.jsx
-export const FormLogin = ({ onSuccess }) => { 
+export const FormLogin = () => { 
   const [form, setForm] = useState({
-    Username: "",
-    Email: "",
-    Password: "",
+    username: "", // Sincronizado con tus inputs
+    email: "",
+    password: "",
   });
 
   const [alertMessage, setAlertMessage] = useState("");
   const { loginUser } = usersApi();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (alertMessage) {
@@ -34,15 +35,17 @@ export const FormLogin = ({ onSuccess }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      // Usamos el estado en minúsculas para que coincida con tu db.json
       const response = await loginUser(form.email, form.password);
-      console.log("✅ Login exitoso:", response);
-      setAlertMessage("¡Bienvenida " + response.username + "!");
       
-      // En lugar de navigate, usamos la función onSuccess que viene de App.jsx
-      setTimeout(() => {
-        if (onSuccess) onSuccess(); 
-      }, 2000);
-
+      if (response) {
+        console.log("✅ Login exitoso:", response);
+        setAlertMessage("¡Bienvenida " + response.username + "!");
+        
+        setTimeout(() => {
+          navigate("/tarot"); 
+        }, 2000);
+      }
     } catch (error) {
       console.error("❌ Error al iniciar sesión:", error);
       setAlertMessage("Error al iniciar sesión: " + error.message);
@@ -52,6 +55,7 @@ export const FormLogin = ({ onSuccess }) => {
   return (
     <>
       {alertMessage && <AlertDisplay message={alertMessage} />}
+      {/* Respetando exactamente tus clases originales de posicionamiento y color */}
       <div className="bg-[#fde8EE] w-fit z-30 rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col items-center fixed top-1/3">
         <h1 className="text-[#6a4a4a] text-2xl font-semibold p-2">Bienvenida</h1>
         <form onSubmit={handleSubmit}>

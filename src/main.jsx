@@ -1,13 +1,13 @@
+// src/main.jsx
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom' 
-import App from './App.jsx' 
-import './App.css'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './routes/router'
+import './App.css' 
+// import './App.css' // Importa aquí tus estilos globales si App.jsx ya no los tiene
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter> 
-      <App />
-    </BrowserRouter>
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )

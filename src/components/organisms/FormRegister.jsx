@@ -6,9 +6,11 @@ import { usersApi } from "../../services/usersApi";
 import { Activity, useEffect, useState } from "react";
 import { AlertDisplay } from "../molecules/alertDisplay";
 import { FormLogin } from "./FormLogIn";
+import { useNavigate } from "react-router-dom"; // 1. Importa el hook
 
-export const FormRegister = ({ onSuccess }) => { // Recibe onSuccess como prop
+export const FormRegister = () => { // 2. Ya no recibe onSuccess
   const [showLogin, setShowLogin] = useState(false);
+  const navigate = useNavigate(); // 3. Inicializa el navegador
 
   const handleClick = () => {
     setShowLogin(true);
@@ -43,13 +45,13 @@ export const FormRegister = ({ onSuccess }) => { // Recibe onSuccess como prop
       console.log(" Usuario registrado:", response);
       setAlertMessage("¡Registro exitoso! Te estamos redirigiendo a la página....");
       
-      // Llamamos a la función que cambia la pantalla después de 4 segundos
+      // 4. Cambia onSuccess por la navegación real al tarot
       setTimeout(() => {
-        if (onSuccess) onSuccess(); 
+        navigate("/tarot"); 
       }, 2000);
 
     } catch (error) {
-      console.error("❌ Error al iniciar sesión:", error);
+      console.error("❌ Error al registrarse:", error);
       setAlertMessage("Error al registrarse: Inténtalo otra vez! ");
     }
   };
@@ -58,7 +60,7 @@ export const FormRegister = ({ onSuccess }) => { // Recibe onSuccess como prop
     <>
       {alertMessage && <AlertDisplay message={alertMessage} />}
       {showLogin ? (
-        <FormLogin onSuccess={onSuccess} />
+        <FormLogin /> // 5. Ya no pasa la prop onSuccess
       ) : (
         <Activity mode="visible">
           <div className="bg-[#fde8EE] z-20 rounded-2xl pl-10 pr-10 pt-5 pb-5 flex flex-col fixed top-1/3">
