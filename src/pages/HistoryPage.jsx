@@ -48,7 +48,7 @@ export function HistoryPage() {
             onClick={() => navigate('/')}
             className="bg-white/60 p-3 rounded-full shadow-lg hover:scale-110 transition-transform text-2xl"
           >
-            🏠
+            ⭐
           </button>
         </header>
 

@@ -18,7 +18,7 @@ export const CardReading = () => {
           className="bg-white/40 p-3 rounded-full text-2xl hover:scale-125 transition-transform shadow-lg border border-white/50"
           title="Volver al Inicio"
         >
-          🏠
+          ⭐
         </button>
       </div>
 
